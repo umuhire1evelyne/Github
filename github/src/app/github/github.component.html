@@ -1,0 +1,95 @@
+<!-- <p>github works!</p> -->
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><li>
+                <img id="anim" src="assets/images/duck.gif" alt="github image" height="80" width="80" style=" margin-top: -17%;">
+            </li></a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><form><div class="form-group"><input type="text" style="margin-top: 5%; width: 130%; height: 15%;background-color: rgb(70, 68, 68); border: none; color: ghostwhite;" class="form-control header-search-input jump-to-field js-jump-to-field js-site-search-focus  " placeholder="search or jump to" [(ngModel)]="username" name="username"  (keyup.Enter)="search()"></div></form></li>
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div *ngIf="user">
+    <div style="margin-top: 10%;" class="panel panel-default">
+        <div class="panel-heading">
+            <h1 class="panel-title"><h1>{{user.login}}</h1></h1>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <img class="img-thumbnail github-avatar" src="{{user.avatar_url}}" alt="user profile picture">
+                </div>
+
+                <div class="col-md-8">
+                    <div class="stats">
+                        <span class="label label-default">{{user.public_repos}} Public Repos</span>
+                        <span class="label label-primary">{{user.public_gist}} Public Gist</span>
+                        <span class="label label-success">{{user.followers}} Followers </span>
+                        <span class="label label-info">{{user.following}} Following </span>
+                    </div>
+                    <br>
+
+                    <ul class="list-group">
+                        <li class="list-group-item"><strong>Username:</strong> {{user.login}}</li>
+                        <li class="list-group-item"><strong>Location:</strong> {{user.location}}</li>
+                        <li class="list-group-item"><strong>Email:</strong> {{user.email}}</li>
+                        <li class="list-group-item"><strong>Bio:</strong> {{user.bio}}</li>
+                        <li class="list-group-item"><strong>Member Since:</strong> {{user.created_at}}</li>
+                    </ul>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Repositories</h3>
+            </div>
+        <div class="panel-body">
+            <div class="row">
+                    <!-- Looop To Display Repos -->
+                    <div class="col-md-12">
+                        <div *ngFor="let repo of repos">
+                            <div class="row">
+                                <!-- Div To Display Repositories -->
+                                <div class="col-md-9">
+                                    <!-- Repo Name -->
+                                    <h3>{{repo.name}}</h3>
+                                    <!-- Repo Description -->
+                                    <p>{{repo.description}}</p>
+                                    <!-- View on Github Button -->
+                                    <h4><a href="{{repo.html_url}}" target="_blank">View on github</a></h4>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <span class="label label-default">{{repo.watchers}} Stars </span>
+                                    <span class="label label-primary">{{repo.forks}} Forks </span>
+                                </div>
+
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
